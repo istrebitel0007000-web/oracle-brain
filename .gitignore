@@ -1,0 +1,61 @@
+# Oracle Brain — .gitignore
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+pip-wheel-metadata/
+.installed.cfg
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Runtime data (do NOT commit user data)
+settings.json
+oracle.log
+*.log
+chat_history.json
+session_restore.json
+oracle_notes.json
+oracle_bookmarks.json
+oracle_rag.json
+oracle_ratings.json
+daily_digest.json
+oracle.db
+oracle_code/
+oracle_images/
+oracle_drafts/
+uploads/
+user_data/
+backups/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/

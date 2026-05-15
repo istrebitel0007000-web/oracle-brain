@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: oracle-brain
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --worker-class gevent --workers 2 --bind 0.0.0.0:$PORT --timeout 120 --keep-alive 5 --log-level info
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: GROQ_KEY_1
+        sync: false
+      - key: GROQ_KEY_2
+        sync: false
+      - key: GROQ_KEY_3
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: oracle-brain-db
+          property: connectionString
+      - key: REDIS_URL
+        sync: false
+      - key: RATE_PER_MINUTE
+        value: "20"
+      - key: RATE_PER_HOUR
+        value: "200"
+      - key: RATE_PER_DAY
+        value: "1000"
+      - key: RATE_LIMIT_ENABLED
+        value: "true"
+    healthCheckPath: /health
+    autoDeploy: true
+
+databases:
+  - name: oracle-brain-db
+    databaseName: oracle_brain
+    user: oracle
+    plan: free
