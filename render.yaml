@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: oracle-brain
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate --noinput
+      python manage.py seed_personas
+    startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "oracle-brain.onrender.com"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: oracle-brain-db
+          property: connectionString
+      - key: GROQ_KEY_1
+        sync: false
+      - key: GROQ_KEY_2
+        sync: false
+      - key: GROQ_KEY_3
+        sync: false
+      - key: ORACLE_MODEL
+        value: "deepseek-r1-distill-llama-70b"
+      - key: ORACLE_MAX_TOKENS
+        value: "4096"
+      - key: ORACLE_TEMPERATURE
+        value: "0.7"
+      - key: DAILY_BUDGET_USD
+        value: "0.0"
+
+databases:
+  - name: oracle-brain-db
+    plan: free
+    databaseName: oracle_brain
+    user: oracle_user

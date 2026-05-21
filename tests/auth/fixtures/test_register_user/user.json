@@ -1,0 +1,15 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "testuser",
+      "password": "pbkdf2_sha256$600000$testsalt$hashedpassword=",
+      "email": "testuser@example.com",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2024-01-01T00:00:00+00:00"
+    }
+  }
+]
