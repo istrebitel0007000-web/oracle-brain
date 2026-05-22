@@ -34,7 +34,7 @@ def _build_messages(conversation: Conversation, user_content: str) -> list:
     return messages
 
 
-def _get_cache(key: str, persona: str) -> str | None:
+def _get_cache(key: str, persona: str) -> object:
     try:
         entry = CacheEntry.objects.get(cache_key=key, persona=persona)
         return entry.response

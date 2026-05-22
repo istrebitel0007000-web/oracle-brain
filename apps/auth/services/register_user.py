@@ -21,7 +21,7 @@ def register_user(username: str, password: str, email: str = "") -> tuple[User, 
     return user, token
 
 
-def login_user(username: str, password: str) -> tuple[User, Token] | None:
+def login_user(username: str, password: str) -> object:
     """
     Authenticate a user and return (user, token).
     Returns None if credentials are invalid.

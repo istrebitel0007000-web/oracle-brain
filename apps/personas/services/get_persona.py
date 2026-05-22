@@ -75,7 +75,7 @@ def seed_builtin_personas() -> None:
         )
 
 
-def get_persona(key: str) -> Persona | None:
+def get_persona(key: str) -> object:
     """Return persona by key or None if not found."""
     try:
         return Persona.objects.get(key=key)

@@ -220,7 +220,7 @@ def _ollama_fallback(messages: list, cfg: dict) -> dict:
         }
 
 
-def _parse_retry_after(error_str: str) -> Optional[int]:
+def _parse_retry_after(error_str: str) -> object:
     """Parse retry-after seconds from Groq error message."""
     import re
     match = re.search(r"retry.after[:\s]+(\d+)", error_str, re.IGNORECASE)

@@ -29,8 +29,6 @@ INSTALLED_APPS = [
     "apps.rag",
     "apps.agent",
     "apps.costs",
-    "apps.backup",
-    "apps.search",
     "apps.webhooks",
 ]
 
